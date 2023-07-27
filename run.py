@@ -252,7 +252,6 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
 
         # produces a table with trade information
         GetTradeInformation(update, trade, account_information['balance'])
-        enterTrade = True
             
         # checks if the user has indicated to enter trade
         if(enterTrade == True):
@@ -384,10 +383,9 @@ def CalculateTrade(update: Update, context: CallbackContext) -> int:
     asyncio.run(ConnectMetaTrader(update, context.user_data['trade'], False))
 
     # asks if user if they would like to enter or decline trade
-    #update.effective_message.reply_text("Would you like to enter this trade?\nTo enter, select: /yes\nTo decline, select: /no")
+    update.effective_message.reply_text("Would you like to enter this trade?\nTo enter, select: /yes\nTo decline, select: /no")
 
-    #return DECISION
-    return 1
+    return DECISION
 
 def unknown_command(update: Update, context: CallbackContext) -> None:
     """Checks if the user is authorized to use this bot or shares to use /help command for instructions.
